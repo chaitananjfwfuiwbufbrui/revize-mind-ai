@@ -89,18 +89,21 @@ function UploadPage() {
           )}
         </div>
 
-        <Link
-          to="/"
-          disabled={!ready}
-          className={`w-full py-4 rounded-2xl font-display font-semibold flex items-center justify-center gap-2 transition-all ${
-            ready
-              ? "bg-primary text-primary-foreground shadow-pop hover:scale-[0.98]"
-              : "bg-muted text-muted-foreground pointer-events-none"
-          }`}
-          aria-disabled={!ready}
-        >
-          <Sparkles className="size-5" /> Generate Flashcards
-        </Link>
+        {ready ? (
+          <Link
+            to="/"
+            className="w-full py-4 rounded-2xl font-display font-semibold flex items-center justify-center gap-2 bg-primary text-primary-foreground shadow-pop hover:scale-[0.98] transition-transform"
+          >
+            <Sparkles className="size-5" /> Generate Flashcards
+          </Link>
+        ) : (
+          <button
+            disabled
+            className="w-full py-4 rounded-2xl font-display font-semibold flex items-center justify-center gap-2 bg-muted text-muted-foreground"
+          >
+            <Sparkles className="size-5" /> Generate Flashcards
+          </button>
+        )}
 
         <p className="text-center text-xs text-muted-foreground">
           AI generation is mocked in this UI shell.
