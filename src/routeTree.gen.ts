@@ -9,38 +9,148 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as UploadRouteImport } from './routes/upload'
+import { Route as StatsRouteImport } from './routes/stats'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as DecksRouteImport } from './routes/decks'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ReviewDeckIdRouteImport } from './routes/review.$deckId'
+import { Route as DeckDeckIdRouteImport } from './routes/deck.$deckId'
 
+const UploadRoute = UploadRouteImport.update({
+  id: '/upload',
+  path: '/upload',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StatsRoute = StatsRouteImport.update({
+  id: '/stats',
+  path: '/stats',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DecksRoute = DecksRouteImport.update({
+  id: '/decks',
+  path: '/decks',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ReviewDeckIdRoute = ReviewDeckIdRouteImport.update({
+  id: '/review/$deckId',
+  path: '/review/$deckId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeckDeckIdRoute = DeckDeckIdRouteImport.update({
+  id: '/deck/$deckId',
+  path: '/deck/$deckId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/decks': typeof DecksRoute
+  '/profile': typeof ProfileRoute
+  '/stats': typeof StatsRoute
+  '/upload': typeof UploadRoute
+  '/deck/$deckId': typeof DeckDeckIdRoute
+  '/review/$deckId': typeof ReviewDeckIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/decks': typeof DecksRoute
+  '/profile': typeof ProfileRoute
+  '/stats': typeof StatsRoute
+  '/upload': typeof UploadRoute
+  '/deck/$deckId': typeof DeckDeckIdRoute
+  '/review/$deckId': typeof ReviewDeckIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/decks': typeof DecksRoute
+  '/profile': typeof ProfileRoute
+  '/stats': typeof StatsRoute
+  '/upload': typeof UploadRoute
+  '/deck/$deckId': typeof DeckDeckIdRoute
+  '/review/$deckId': typeof ReviewDeckIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/decks'
+    | '/profile'
+    | '/stats'
+    | '/upload'
+    | '/deck/$deckId'
+    | '/review/$deckId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/decks'
+    | '/profile'
+    | '/stats'
+    | '/upload'
+    | '/deck/$deckId'
+    | '/review/$deckId'
+  id:
+    | '__root__'
+    | '/'
+    | '/decks'
+    | '/profile'
+    | '/stats'
+    | '/upload'
+    | '/deck/$deckId'
+    | '/review/$deckId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DecksRoute: typeof DecksRoute
+  ProfileRoute: typeof ProfileRoute
+  StatsRoute: typeof StatsRoute
+  UploadRoute: typeof UploadRoute
+  DeckDeckIdRoute: typeof DeckDeckIdRoute
+  ReviewDeckIdRoute: typeof ReviewDeckIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/upload': {
+      id: '/upload'
+      path: '/upload'
+      fullPath: '/upload'
+      preLoaderRoute: typeof UploadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/stats': {
+      id: '/stats'
+      path: '/stats'
+      fullPath: '/stats'
+      preLoaderRoute: typeof StatsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/decks': {
+      id: '/decks'
+      path: '/decks'
+      fullPath: '/decks'
+      preLoaderRoute: typeof DecksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,12 +158,42 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/review/$deckId': {
+      id: '/review/$deckId'
+      path: '/review/$deckId'
+      fullPath: '/review/$deckId'
+      preLoaderRoute: typeof ReviewDeckIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/deck/$deckId': {
+      id: '/deck/$deckId'
+      path: '/deck/$deckId'
+      fullPath: '/deck/$deckId'
+      preLoaderRoute: typeof DeckDeckIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DecksRoute: DecksRoute,
+  ProfileRoute: ProfileRoute,
+  StatsRoute: StatsRoute,
+  UploadRoute: UploadRoute,
+  DeckDeckIdRoute: DeckDeckIdRoute,
+  ReviewDeckIdRoute: ReviewDeckIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
