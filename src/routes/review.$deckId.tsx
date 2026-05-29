@@ -73,7 +73,8 @@ function ReviewPage() {
 
   return (
     <div className="min-h-screen w-full bg-background flex justify-center">
-      <div className="relative w-full max-w-md min-h-screen flex flex-col">
+      <div className="relative w-full max-w-md md:max-w-2xl min-h-screen flex flex-col">
+
         {/* Top bar */}
         <div className="px-5 pt-12 pb-3 flex items-center gap-3">
           <Link
