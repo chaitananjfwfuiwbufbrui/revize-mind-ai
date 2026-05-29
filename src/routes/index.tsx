@@ -15,7 +15,8 @@ function HomePage() {
     <MobileShell>
       <PikaHeader title="Pika" subtitle={`Hey ${profile.name}, ready to smash it?`} streak={stats.streak} />
 
-      <main className="px-5 -mt-6 space-y-7">
+      <main className="px-5 md:px-10 -mt-6 space-y-7 md:space-y-10">
+
         {/* Due card */}
         <section className="bg-card rounded-3xl p-5 shadow-soft border border-border flex items-center justify-between">
           <div>
@@ -34,7 +35,8 @@ function HomePage() {
         {/* Quick upload */}
         <section>
           <h2 className="font-display text-xl font-extrabold mb-3">Magic Upload</h2>
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-3 gap-3 md:gap-5">
+
             <UploadTile to="/upload" icon={<FileText className="size-5" />} label="PDF" />
             <UploadTile to="/upload" icon={<Youtube className="size-5" />} label="YouTube" />
             <UploadTile to="/upload" icon={<NotebookPen className="size-5" />} label="Notes" />
@@ -49,8 +51,9 @@ function HomePage() {
               View all
             </Link>
           </div>
-          <div className="space-y-3">
-            {decks.slice(0, 3).map((d) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+            {decks.slice(0, 4).map((d) => (
+
               <Link
                 key={d.id}
                 to="/deck/$deckId"

@@ -13,8 +13,9 @@ function DecksPage() {
     <MobileShell>
       <PikaHeader title="My Decks" subtitle={`${decks.length} active decks`} />
 
-      <main className="px-5 -mt-6">
-        <div className="space-y-3">
+      <main className="px-5 md:px-10 -mt-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+
           {decks.map((d) => (
             <Link
               key={d.id}

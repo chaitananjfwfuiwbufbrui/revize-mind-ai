@@ -16,9 +16,9 @@ function StatsPage() {
   return (
     <MobileShell>
       <PikaHeader title="Your Stats" subtitle="Keep the streak alive" />
+      <main className="px-5 md:px-10 -mt-6 space-y-5">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
 
-      <main className="px-5 -mt-6 space-y-5">
-        <div className="grid grid-cols-2 gap-3">
           <Metric icon={<Flame className="size-4" />} label="Current streak" value={`${stats.streak} days`} accent />
           <Metric icon={<Trophy className="size-4" />} label="Longest streak" value={`${stats.longestStreak} days`} />
           <Metric icon={<BookOpen className="size-4" />} label="Cards reviewed" value={stats.cardsReviewedTotal.toLocaleString()} />

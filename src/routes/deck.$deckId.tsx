@@ -33,7 +33,8 @@ function DeckDetailPage() {
         </div>
       </header>
 
-      <main className="px-5 -mt-6 space-y-5">
+      <main className="px-5 md:px-10 -mt-6 space-y-5">
+
         <section className="bg-card rounded-3xl p-5 shadow-soft border border-border grid grid-cols-3 gap-3 text-center">
           <Stat label="Due" value={deck.due} accent />
           <Stat label="Mastered" value={`${deck.mastered}%`} />
