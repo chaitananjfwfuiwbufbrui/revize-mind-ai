@@ -59,7 +59,8 @@ export function MobileShell({ children }: { children: ReactNode }) {
 
         {/* Mobile bottom nav */}
         <nav className="md:hidden fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md z-50">
-          <div className="mx-3 mb-3 rounded-3xl bg-card/95 backdrop-blur-xl border border-border shadow-pop px-4 py-3 flex items-center justify-between">
+      <div className="relative w-full max-w-md md:max-w-5xl min-h-screen pb-28 md:pb-12 bg-background">
+
             {tabs.slice(0, 2).map((t) => (
               <TabLink key={t.to} {...t} active={pathname === t.to} />
             ))}
