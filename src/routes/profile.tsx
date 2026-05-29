@@ -13,7 +13,8 @@ function ProfilePage() {
     <MobileShell>
       <PikaHeader title="Profile" />
 
-      <main className="px-5 -mt-6 space-y-5">
+      <main className="px-5 md:px-10 -mt-6 space-y-5 md:max-w-2xl md:mx-auto md:w-full">
+
         {/* User card */}
         <section className="bg-card rounded-3xl p-5 shadow-soft border border-border flex items-center gap-4">
           <div className="size-16 rounded-2xl bg-brand grid place-items-center text-2xl font-display font-extrabold text-brand-foreground">

@@ -25,7 +25,8 @@ function UploadPage() {
     <MobileShell>
       <PikaHeader title="Upload" subtitle="Turn anything into flashcards" />
 
-      <main className="px-5 -mt-6 space-y-6">
+      <main className="px-5 md:px-10 -mt-6 space-y-6 md:max-w-2xl md:mx-auto md:w-full">
+
         {/* Tab switcher */}
         <div className="bg-card p-1.5 rounded-2xl border border-border grid grid-cols-3 gap-1">
           <TabBtn active={tab === "pdf"} onClick={() => setTab("pdf")} icon={<FileText className="size-4" />} label="PDF" />
